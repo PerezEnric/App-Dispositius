@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "634413535035",
+    "firebase_url": "https://lyriccloud-9362b.firebaseio.com",
+    "project_id": "lyriccloud-9362b",
+    "storage_bucket": "lyriccloud-9362b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:634413535035:android:c6537a52ffd91448d9311e",
+        "android_client_info": {
+          "package_name": "com.example.assignment03"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "634413535035-fh3kn30s59vcpchn14vlvsv5sbhfoeu4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWF997QymZICJaRNjKtKalrMYZePtNgvo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "634413535035-fh3kn30s59vcpchn14vlvsv5sbhfoeu4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
