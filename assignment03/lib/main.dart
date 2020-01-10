@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:assignment03/FavsListPage.dart';
 
 void main() => runApp(MyApp());
 
@@ -36,6 +37,11 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.favorite),
         onPressed:(){
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context)=>FavsListPage(),
+            )
+          );
         }
       ),
       );
