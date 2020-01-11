@@ -14,12 +14,10 @@ class SongsPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.favorite),
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.red,
         onPressed:(){
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context)=>FavsListPage(),
-            )
-          );
+          Navigator.of(context).pushNamed('/favs');
         }
       ),
       body: StreamBuilder(
@@ -59,6 +57,10 @@ class SongsTile extends StatelessWidget {
     return ListTile(
       onTap: (){
         Navigator.of(context).pushNamed('/lyrics', arguments: snpsht);
+      },
+
+      onLongPress: (){
+        Navigator.of(context).pushNamed('/favs');
       },
         leading: Container(
             width: 45,

@@ -1,3 +1,4 @@
+import 'package:assignment03/FavsListPage.dart';
 import 'package:flutter/material.dart';
 import 'SongsPage.dart';
 import 'lyricspage.dart';
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (_) => SongsPage(),
         '/lyrics': (_) => LyricsPage(),
+        '/favs': (_) => FavsListPage(),
       },
     );
   }
