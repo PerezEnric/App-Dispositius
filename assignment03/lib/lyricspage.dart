@@ -8,6 +8,7 @@ class LyricsPage extends StatelessWidget {
     final DocumentSnapshot snp = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(title: Text(snp.data["name"]),),
+      body: Text(snp.data["lyrics"]),
     );
   }
 }
