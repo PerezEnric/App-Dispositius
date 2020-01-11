@@ -1,24 +1,16 @@
+import 'package:assignment03/songs.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:assignment03/FavsListPage.dart';
 
-class SongsPage extends StatefulWidget {
-  SongsPage({Key key, this.title}) : super(key: key);
+class SongsPage extends StatelessWidget {
 
-  final String title;
-
-  @override
-  _SongsPageState createState() => _SongsPageState();
-}
-
-class _SongsPageState extends State<SongsPage> {
-
-  @override
+@override
   Widget build(BuildContext context) {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text('Songs Page'),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.favorite),
@@ -49,28 +41,41 @@ class _SongsPageState extends State<SongsPage> {
               );
             },
             itemBuilder: (context, index){
-              return ListTile(
-                leading: Container(
-                  width: 45,
-                  height: 45,
-                  decoration: BoxDecoration(
-                    color: Colors.blueGrey,
-                  ),
-                ),
-                title: Text(docs[index].data['name']),
-                subtitle: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text(docs[index].data['artist']),
-                    Text(docs[index].data['album']),
-                    Text(docs[index].data['time_min'].toString()+':'+docs[index].data['time_sec'].toString()),
-                  ],
-                ),
-              );
+              return SongsTile(docs[index]);
             }
           );
         }
       ),
       );
+  }
+}
+
+class SongsTile extends StatelessWidget {
+  final DocumentSnapshot snpsht;
+  SongsTile(this.snpsht);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      onTap: (){
+        Navigator.of(context).pushNamed('/lyrics', arguments: snpsht);
+      },
+        leading: Container(
+            width: 45,
+            height: 45,
+            decoration: BoxDecoration(
+            color: Colors.blueGrey,
+          ),
+        ),
+      title: Text(snpsht.data['name']),
+      subtitle: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Text(snpsht.data['artist']),
+        Text(snpsht.data['album']),
+        Text(snpsht.data['time_min'].toString()+':'+snpsht.data['time_sec'].toString()),
+       ],
+      ),
+    );
   }
 }

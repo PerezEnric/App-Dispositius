@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'SongsPage.dart';
+import 'lyricspage.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,7 +12,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SongsPage(title: 'Songs Page'),
+      //home: SongsPage(title: 'Songs Page'),
+      initialRoute: '/',
+      routes: {
+        '/': (_) => SongsPage(),
+        '/lyrics': (_) => LyricsPage(),
+      },
     );
   }
 }
