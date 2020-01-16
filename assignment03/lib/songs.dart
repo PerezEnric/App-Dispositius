@@ -7,6 +7,7 @@ class Songs
   String name;
   String album;
   String artist;
+  String cover;
   int timeMin;
   int timeSec;
 
@@ -16,7 +17,8 @@ class Songs
     album = doc.data['album'],
     artist = doc.data['artist'],
     timeMin = doc.data['time_min'],
-    timeSec = doc.data['time_sec'];
+    timeSec = doc.data['time_sec'],
+    cover = doc.data['cover'];
 }
 
 List<Songs> toSongsList(QuerySnapshot query)

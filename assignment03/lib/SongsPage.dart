@@ -65,9 +65,7 @@ class SongsTile extends StatelessWidget {
         leading: Container(
             width: 45,
             height: 45,
-            decoration: BoxDecoration(
-            color: Colors.blueGrey,
-          ),
+            child: Image.network(snpsht.data['cover']),
         ),
       title: Text(snpsht.data['name']),
       subtitle: Row(
