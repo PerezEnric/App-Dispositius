@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'dart:io';
 
 
 class SongsPage extends StatelessWidget {
@@ -11,14 +13,46 @@ class SongsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Songs Page'),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: SpeedDial(
+        marginRight: 20,
+        marginBottom: 20,
+        animatedIcon: AnimatedIcons.menu_close,
+        animatedIconTheme: IconThemeData(size: 22),
+        closeManually: true,
+        curve: Curves.bounceIn,
+        overlayColor: Colors.black,
+        overlayOpacity: 0.5,
+        onOpen: ()=> print('opening'),
+        onClose: ()=> print('closing'),
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        elevation: 10,
+        children: [
+          SpeedDialChild(
+            child: Icon(Icons.favorite),
+            foregroundColor: Colors.white,
+            backgroundColor: Colors.red,
+            onTap:(){
+              Navigator.of(context).pushNamed('/favs');
+             },
+          ),
+          SpeedDialChild(
+            child: Icon(Icons.close),
+            foregroundColor: Colors.white,
+            backgroundColor: Colors.yellow,
+            onTap:()=>exit(0),
+          )
+        ],
+      ),
+      
+      /*FloatingActionButton(
         child: Icon(Icons.favorite),
         foregroundColor: Colors.white,
         backgroundColor: Colors.red,
         onPressed:(){
           Navigator.of(context).pushNamed('/favs');
         }
-      ),
+      ),*/
       body: StreamBuilder(
         stream: Firestore.instance.collection('Songs').snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot){
@@ -43,7 +77,7 @@ class SongsPage extends StatelessWidget {
           );
         }
       ),
-      );
+    );
   }
 }
 
