@@ -11,7 +11,7 @@ class FavsListPage extends StatelessWidget{
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: Text('Favourites'),
+        title: Text('Favorite Lyrics'),
         backgroundColor: Colors.red,
       ),
       floatingActionButton: SpeedDial(

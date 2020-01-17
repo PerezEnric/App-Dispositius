@@ -11,7 +11,7 @@ class SongsPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Songs Page'),
+        title: Text('Lyrics List'),
       ),
       floatingActionButton: SpeedDial(
         marginRight: 20,
