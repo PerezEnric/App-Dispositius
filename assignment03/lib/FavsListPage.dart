@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'dart:io';
 
 
 class FavsListPage extends StatelessWidget{
@@ -11,6 +13,29 @@ class FavsListPage extends StatelessWidget{
       appBar: AppBar(
         title: Text('Favourites'),
         backgroundColor: Colors.red,
+      ),
+      floatingActionButton: SpeedDial(
+        marginRight: 20,
+        marginBottom: 20,
+        animatedIcon: AnimatedIcons.menu_close,
+        animatedIconTheme: IconThemeData(size: 22),
+        closeManually: false,
+        curve: Curves.bounceIn,
+        overlayColor: Colors.black,
+        overlayOpacity: 0.5,
+        onOpen: ()=> print('opening'),
+        onClose: ()=> print('closing'),
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        elevation: 10,
+        children: [
+          SpeedDialChild(
+            child: Icon(Icons.close),
+            foregroundColor: Colors.white,
+            backgroundColor: Colors.red,
+            onTap:()=>exit(0),
+          )
+        ],
       ),
       body: StreamBuilder(
         stream: Firestore.instance.collection('favs').snapshots(),

@@ -18,7 +18,7 @@ class SongsPage extends StatelessWidget {
         marginBottom: 20,
         animatedIcon: AnimatedIcons.menu_close,
         animatedIconTheme: IconThemeData(size: 22),
-        closeManually: true,
+        closeManually: false,
         curve: Curves.bounceIn,
         overlayColor: Colors.black,
         overlayOpacity: 0.5,
@@ -31,7 +31,7 @@ class SongsPage extends StatelessWidget {
           SpeedDialChild(
             child: Icon(Icons.favorite),
             foregroundColor: Colors.white,
-            backgroundColor: Colors.red,
+            backgroundColor: Colors.pink,
             onTap:(){
               Navigator.of(context).pushNamed('/favs');
              },
@@ -39,7 +39,7 @@ class SongsPage extends StatelessWidget {
           SpeedDialChild(
             child: Icon(Icons.close),
             foregroundColor: Colors.white,
-            backgroundColor: Colors.yellow,
+            backgroundColor: Colors.red,
             onTap:()=>exit(0),
           )
         ],
