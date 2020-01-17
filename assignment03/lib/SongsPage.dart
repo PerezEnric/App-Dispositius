@@ -57,9 +57,8 @@ class SongsTile extends StatelessWidget {
       onTap: (){
         Navigator.of(context).pushNamed('/lyrics', arguments: snpsht);
       },
-
       onLongPress: (){
-        Firestore.instance.collection('Favs').document().setData({
+        Firestore.instance.collection('favs').document().setData({
           'name': snpsht.data['name'],
           'artist': snpsht.data['artist'],
           'album': snpsht.data['album'],
@@ -67,7 +66,10 @@ class SongsTile extends StatelessWidget {
           'time_sec': snpsht.data['time_sec'],
           'cover': snpsht.data['cover']
         });
-        //Navigator.of(context).pushNamed('/favs');
+        final sb = SnackBar(
+          content: Text('Song added to Favourites'),
+        );
+        Scaffold.of(context).showSnackBar(sb);
       },
         leading: Container(
             width: 45,

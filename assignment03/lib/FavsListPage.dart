@@ -13,7 +13,7 @@ class FavsListPage extends StatelessWidget{
         backgroundColor: Colors.red,
       ),
       body: StreamBuilder(
-        stream: Firestore.instance.collection('Favs').snapshots(),
+        stream: Firestore.instance.collection('favs').snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot){
           if(!snapshot.hasData){
             return Center(
@@ -48,7 +48,11 @@ class FavsTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onLongPress: (){
-        Firestore.instance.collection('Favs').document(snpsht.documentID).delete();
+        Firestore.instance.collection('favs').document(snpsht.documentID).delete();
+        final sb = SnackBar(
+          content: Text('Song deleted from Favourites'),
+        );
+        Scaffold.of(context).showSnackBar(sb);
       },
       leading: Container(
           width: 45,
