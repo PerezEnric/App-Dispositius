@@ -1,7 +1,6 @@
-import 'package:assignment03/songs.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:assignment03/FavsListPage.dart';
+
 
 class SongsPage extends StatelessWidget {
 
@@ -60,7 +59,15 @@ class SongsTile extends StatelessWidget {
       },
 
       onLongPress: (){
-        Navigator.of(context).pushNamed('/favs');
+        Firestore.instance.collection('Favs').document().setData({
+          'name': snpsht.data['name'],
+          'artist': snpsht.data['artist'],
+          'album': snpsht.data['album'],
+          'time_min': snpsht.data['time_min'],
+          'time_sec': snpsht.data['time_sec'],
+          'cover': snpsht.data['cover']
+        });
+        //Navigator.of(context).pushNamed('/favs');
       },
         leading: Container(
             width: 45,

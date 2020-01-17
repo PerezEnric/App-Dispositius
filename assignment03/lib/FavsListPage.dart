@@ -1,29 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class FavsListPage extends StatefulWidget{
 
-  final List<Favs> bfavs = List<Favs>();
-  @override
-
-  _FavsListPageState createState() => _FavsListPageState();
-}
-
-class Favs {
-  String what;
-  bool done;
-  Favs(this.what) : done = false;
-
-  Favs.fromJson(Map<String, dynamic> json)
-      : what = json['what'],
-        done = json['done'];
-
-  Map<String, dynamic> toJson() => {
-        'what': what,
-        'done': done,
-  };
-}
-
-class _FavsListPageState extends State<FavsListPage>{
+class FavsListPage extends StatelessWidget{
 
   @override
 
@@ -31,18 +10,59 @@ class _FavsListPageState extends State<FavsListPage>{
     return Scaffold(
       appBar: AppBar(
         title: Text('Favourites'),
+        backgroundColor: Colors.red,
       ),
-      body: ListView.separated(
-        separatorBuilder: (contex, index) => Divider(
-        thickness: 1,
-        height: 1,
-        ),
-        itemCount: widget.bfavs.length,
-        itemBuilder: (context, index){
-          return ListTile(
-            title: Text(widget.bfavs[index].what),
+      body: StreamBuilder(
+        stream: Firestore.instance.collection('Favs').snapshots(),
+        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot){
+          if(!snapshot.hasData){
+            return Center(
+              child: Text('There are no favourite songs yet!'),
+            );
+          }
+          List<DocumentSnapshot> docs = snapshot.data.documents;
+          return ListView.separated(
+            itemCount: docs.length,
+            separatorBuilder: (context, index){
+              return Divider(
+                height: 1,
+                indent: 15,
+                endIndent: 15,
+              );
+            },
+            itemBuilder: (context, index){
+              return FavsTile(docs[index]);
+            },
           );
-        },
+        }
+      ),
+    );
+  }
+}
+
+class FavsTile extends StatelessWidget {
+  final DocumentSnapshot snpsht;
+  FavsTile(this.snpsht);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      onLongPress: (){
+        Firestore.instance.collection('Favs').document(snpsht.documentID).delete();
+      },
+      leading: Container(
+          width: 45,
+          height: 45,
+          child: Image.network(snpsht.data['cover']),
+      ),
+      title: Text(snpsht.data['name']),
+      subtitle: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Text(snpsht.data['artist']),
+        Text(snpsht.data['album']),
+        Text(snpsht.data['time_min'].toString()+':'+snpsht.data['time_sec'].toString()),
+       ],
       ),
     );
   }
