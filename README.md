@@ -14,6 +14,10 @@ All the data is storaged and managed from Firebase.
 
 * Enric Pérez: https://github.com/PerezEnric
 
+## Repository
+
+https://github.com/PerezEnric/App-Dispositius
+
 ## License
 
 MIT License
