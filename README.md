@@ -4,7 +4,7 @@ This is an App made by two students of CITM for the subject of Mobile Devices.
 
 ## Features
 
-In this App the user can press any song an its lyrics will be displayed. In addition, if a song in the list is pressed for a while, it will be saved into a Favourites List. The user can see the songs saved by pressing the favourites button in the songs list. Finally, if the user presses a song in the Favourites List, this will be deleted from the list.
+This App lets the user see lyrics for the available songsd. In addition, if a song in the list is pressed for a moment, it will be saved into the Favorite Lyrics List. The user can see the songs saved by pressing the menu button in the bottom right corner, and then select the favorite option. Finally, if the user presses a song in the Favorite Lyrics List, the song will be deleted from that list.
 
 All the data is storaged and managed from Firebase.
 
